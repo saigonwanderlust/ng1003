@@ -10,7 +10,9 @@ import { Component } from '@angular/core';
                 [(ngModel)]="txtEmail"
             />
             <br>
-            <button class="btn btn-success">Show</button>
+            <button class="btn btn-success" (click)="show();">
+                Show
+            </button>
             <pre>{{ txtEmail }}</pre>
         </div>
     `
@@ -18,4 +20,9 @@ import { Component } from '@angular/core';
 
 export class MyInputComponent {
     txtEmail = '';
+
+    show() {
+        alert(this.txtEmail);
+        this.txtEmail = '';
+    }
 }
