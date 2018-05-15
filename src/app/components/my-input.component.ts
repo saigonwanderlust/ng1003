@@ -4,11 +4,18 @@ import { Component } from '@angular/core';
     selector: 'app-my-input',
     template: `
         <div class="form-group" style="margin: 10px">
-            <input class="form-control" placeholder="Enter your email" />
+            <input
+                class="form-control"
+                placeholder="Enter your email"
+                [(ngModel)]="txtEmail"
+            />
             <br>
             <button class="btn btn-success">Show</button>
+            <pre>{{ txtEmail }}</pre>
         </div>
     `
 })
 
-export class MyInputComponent {}
+export class MyInputComponent {
+    txtEmail = '';
+}
