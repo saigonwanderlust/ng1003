@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { WordComponent } from './components/word.component';
+import { MyInputComponent } from './components/my-input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WordComponent
+    WordComponent,
+    MyInputComponent
   ],
   imports: [
     BrowserModule
