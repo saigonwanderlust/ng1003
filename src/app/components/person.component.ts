@@ -14,6 +14,14 @@ import { Component } from '@angular/core';
             </div>
             <button class="btn btn-success" (click)="increase();">Increase</button>
             <button class="btn btn-warning" (click)="descrease();">Descrease</button>
+            <div style="width: 150px">
+                <br />
+                <input class="form-control" placeholder="Skill name" />
+                <br />
+                <input class="form-control" placeholder="Skill grade" />
+                <br />
+                <button class="btn btn-success" (click)="">Add Skill</button>
+            </div>
         </div>
     `
 })
