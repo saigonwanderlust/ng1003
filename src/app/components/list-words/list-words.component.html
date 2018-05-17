@@ -1,4 +1,14 @@
-<div class="form-group word-form">
+<button class="btn btn-success" *ngIf="!shouldShowForm" (click)="toggleForm();">
+    Create new word
+</button>
+<br>
+<br>
+<select class="form-control" style="width: 200px;" [(ngModel)]="filterMode">
+    <option value="SHOW_ALL">SHOW ALL</option>
+    <option value="SHOW_FORGOT">SHOW FORGOT</option>
+    <option value="SHOW_MEMORIZED">SHOW MEMORIZED</option>
+</select>
+<div class="form-group word-form" *ngIf="shouldShowForm">
     <input
         placeholder="English"
         class="form-control"
@@ -17,26 +27,29 @@
         </button>
         <button
             class="btn btn-danger"
+            (click)="toggleForm();"
         >
             Cancel
         </button>
     </div>
 </div>
-<div class="word" *ngFor="let word of words">
+<div class="word" *ngFor="let word of filteredWords">
     <div class="word-container">
     <h3 class="text-success">{{ word.en }}</h3>
     <h3 class="text-danger">
-        {{ word.vn }}
+        {{ word.isMemorized ? '------' : word.vn }}
     </h3>
     </div>
     <div class="btn-container">
     <button
-        class="btn btn-success"
+        class="{{ word.isMemorized ? 'btn btn-success' : 'btn btn-danger' }}"
+        (click)="toggleIsMemorized(word._id);"
     >
-        Forgot
+        {{ word.isMemorized ? 'Forgot' : 'Memorized' }}
     </button>
     <button
-        class="btn btn-warning" 
+        class="btn btn-warning"
+        (click)="removeWord(word._id);" 
     >
         Remove
     </button>
