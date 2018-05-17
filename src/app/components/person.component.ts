@@ -16,11 +16,11 @@ import { Component } from '@angular/core';
             <button class="btn btn-warning" (click)="descrease();">Descrease</button>
             <div style="width: 150px">
                 <br />
-                <input class="form-control" placeholder="Skill name" />
+                <input class="form-control" placeholder="Skill name" [(ngModel)]="txtSkillName" />
                 <br />
-                <input class="form-control" placeholder="Skill grade" />
+                <input type="number" class="form-control" placeholder="Skill grade" [(ngModel)]="txtSkillGrade" />
                 <br />
-                <button class="btn btn-success" (click)="">Add Skill</button>
+                <button class="btn btn-success" (click)="addSkill();">Add Skill</button>
             </div>
         </div>
     `
@@ -29,6 +29,9 @@ import { Component } from '@angular/core';
 export class PersonComponent {
     name = 'Teo Nguyen';
     age = 16;
+    txtSkillName = '';
+    txtSkillGrade = 0;
+
     skills: Skill[] = [
         { name: 'NodeJS', grade: 9 },
         { name: 'React', grade: 5 },
@@ -36,6 +39,14 @@ export class PersonComponent {
     ];
     increase() { this.age++;  }
     descrease() { this.age--;  }
+    addSkill() {
+        this.skills.push({
+            name: this.txtSkillName,
+            grade: this.txtSkillGrade
+        });
+        this.txtSkillName = '';
+        this.txtSkillGrade = 0;
+    }
 }
 
 interface Skill {
