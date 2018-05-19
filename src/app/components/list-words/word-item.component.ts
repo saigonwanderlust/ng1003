@@ -7,14 +7,14 @@ import { Word } from './word';
     <div class="word-container">
       <h3 class="text-success">{{ wordInfo.en }}</h3>
       <h3 class="text-danger">
-          Mot
+        {{ wordInfo.isMemorized ? '*******' : wordInfo.en }}
       </h3>
       </div>
       <div class="btn-container">
       <button
-          class="btn btn-success"
+          class="{{ wordInfo.isMemorized ? 'btn btn-success' : 'btn btn-danger' }}"
       >
-        Memorized
+        {{ wordInfo.isMemorized ? 'Forgot' : 'Memorized' }}
       </button>
       <button
           class="btn btn-warning"
