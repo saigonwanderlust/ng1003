@@ -8,13 +8,20 @@ import { MyInputComponent } from './components/my-input.component';
 import { PersonComponent } from './components/person.component';
 import { ListWordsComponent } from './components/list-words/list-words.component';
 
+import { WordFilterComponent } from './components/list-words/word-filter.component';
+import { WordItemComponent } from './components/list-words/word-item.component';
+import { WordFormComponent } from './components/list-words/word-form.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     WordComponent,
     MyInputComponent,
     PersonComponent,
-    ListWordsComponent
+    ListWordsComponent,
+    WordFilterComponent,
+    WordItemComponent,
+    WordFormComponent
   ],
   imports: [
     BrowserModule,
