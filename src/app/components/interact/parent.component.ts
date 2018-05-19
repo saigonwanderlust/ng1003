@@ -5,7 +5,11 @@ import { Component } from '@angular/core';
     template: `
         <div>
             <h3>Count = {{ count }}</h3>
-            <app-child (onIncrease)="count = count + 1"></app-child>
+            <app-child
+                (onIncrease)="count = count + 1"
+                (onDescrease)="count = count - 1"
+                (onReset)="count = 1"
+            ></app-child>
         </div>
     `
 })
