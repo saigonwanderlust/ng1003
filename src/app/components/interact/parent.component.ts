@@ -6,14 +6,18 @@ import { Component } from '@angular/core';
         <div>
             <h3>Count = {{ count }}</h3>
             <app-child
-                (onIncrease)="count = count + 1"
-                (onDescrease)="count = count - 1"
-                (onReset)="count = 1"
+                (onIncrease)="onIncrease();"
+                (onDescrease)="onDescrease();"
+                (onReset)="onReset();"
             ></app-child>
         </div>
     `
 })
 
 export class ParentComponent {
-    count = 0;
+    count = 1;
+
+    onIncrease() { this.count++; }
+    onDescrease() { this.count--; }
+    onReset() { this.count = 1; }
 }
