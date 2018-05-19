@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Word } from './word';
 
 @Component({
   selector: 'app-word-item',
   template: `
     <div class="word-container">
-      <h3 class="text-success">One</h3>
+      <h3 class="text-success">{{ wordInfo.en }}</h3>
       <h3 class="text-danger">
           Mot
       </h3>
@@ -24,4 +25,6 @@ import { Component } from '@angular/core';
   `
 })
 
-export class WordItemComponent {}
+export class WordItemComponent {
+  @Input() wordInfo: Word;
+}

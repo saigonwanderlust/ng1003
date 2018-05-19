@@ -1,5 +1,5 @@
 <app-word-form></app-word-form>
 <app-word-filter></app-word-filter>
 <div class="word" *ngFor="let word of words">
-    <app-word-item></app-word-item>
+    <app-word-item [wordInfo]="word"></app-word-item>
 </div>
