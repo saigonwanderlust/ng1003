@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { WordFilterComponent } from './word-filter.component';
-import { Word, WORDS } from './word';
+import { Store } from '@ngrx/store';
+import { Word } from './word';
+import { AppState } from './types';
 
 @Component({
     selector: 'app-list-words',
@@ -14,14 +15,18 @@ import { Word, WORDS } from './word';
 })
 
 export class ListWordsComponent {
-    words = WORDS;
+    words: Word[];
+    filterMode: string;
+    constructor(private store: Store<AppState>) {
+        this.store.select('words').subscribe(w => this.words = w);
+        this.store.select('filterMode').subscribe(f => this.filterMode = f);
+    }
 
     get filteredWords() {
         return this.words.filter(word => {
-            // if (this.filter.filterMode === 'SHOW_ALL') return true;
-            // if (this.filter.filterMode === 'SHOW_FORGOT') return !word.isMemorized;
-            // return word.isMemorized;
-            return true;
+            if (this.filterMode === 'SHOW_ALL') return true;
+            if (this.filterMode === 'SHOW_FORGOT') return !word.isMemorized;
+            return word.isMemorized;
         });
     }
 

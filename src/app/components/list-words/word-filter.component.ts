@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './types';
 
 @Component({
   selector: 'app-word-filter',
@@ -6,6 +8,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     <select
       class="form-control"
       style="width: 200px;"
+      [value]="filterMode"
+      (change)="setFilterMode($event.target.value)"
     >
       <option value="SHOW_ALL">SHOW ALL</option>
       <option value="SHOW_FORGOT">SHOW FORGOT</option>
@@ -15,4 +19,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class WordFilterComponent {
+  filterMode: string;
+  constructor(private store: Store<AppState>) {
+    this.store.select('filterMode').subscribe(f => this.filterMode = f);
+  }
+
+  setFilterMode(filterMode: string) {
+    this.store.dispatch({ type: 'SET_FILTER_MODE', filterMode });
+  }
 }
