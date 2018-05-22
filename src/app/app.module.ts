@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { WordComponent } from './components/word.component';
@@ -14,6 +15,7 @@ import { WordFormComponent } from './components/list-words/word-form.component';
 
 import { ParentComponent } from './components/interact/parent.component';
 import { ChildComponent } from './components/interact/child.component';
+import { countReducer } from './components/interact/countReducer';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ChildComponent } from './components/interact/child.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({ count: countReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]
