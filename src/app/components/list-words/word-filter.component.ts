@@ -6,7 +6,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
     <select
       class="form-control"
       style="width: 200px;"
-      [(ngModel)]="filterMode"
     >
       <option value="SHOW_ALL">SHOW ALL</option>
       <option value="SHOW_FORGOT">SHOW FORGOT</option>
@@ -16,5 +15,4 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class WordFilterComponent {
-  filterMode = 'SHOW_ALL';
 }

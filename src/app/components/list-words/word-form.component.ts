@@ -1,14 +1,14 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { Word } from './word';
 
 @Component({
   selector: 'app-word-form',
   template: `
     <div style="margin-top: 10px; margin-bottom: 10px">
-        <button class="btn btn-success" *ngIf="!shouldShowForm" (click)="toggleForm();">
+        <button class="btn btn-success">
           Create new word
         </button>
-        <div class="form-group word-form" *ngIf="shouldShowForm">
+        <div class="form-group word-form">
             <input
                 placeholder="English"
                 class="form-control"
@@ -22,12 +22,11 @@ import { Word } from './word';
             />
             <br />
             <div class="btn-container">
-                <button class="btn btn-success" (click)="addWord();">
+                <button class="btn btn-success">
                     Add word
                 </button>
                 <button
                     class="btn btn-danger"
-                    (click)="toggleForm();"
                 >
                     Cancel
                 </button>
@@ -38,20 +37,6 @@ import { Word } from './word';
 })
 
 export class WordFormComponent {
-    @Output() onAddWord = new EventEmitter<Word>();
-    shouldShowForm = false;
     txtEn = '';
     txtVn = '';
-
-    toggleForm() {
-        this.shouldShowForm = !this.shouldShowForm;
-    }
-
-    addWord() {
-        const word = new Word(this.txtEn, this.txtVn, false);
-        this.onAddWord.emit(word);
-        this.txtEn = '';
-        this.txtVn = '';
-        this.shouldShowForm = false;
-    }
 }
