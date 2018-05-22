@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { WordFilterComponent } from './word-filter.component';
 import { Word, WORDS } from './word';
 
 @Component({
     selector: 'app-list-words',
     template: `
         <app-word-form (onAddWord)="onAddWord($event)"></app-word-form>
-        <app-word-filter [filterMode]="filterMode" (onSetFilterMode)="onSetFilterMode($event)">
-        </app-word-filter>
+        <app-word-filter></app-word-filter>
         <div class="word" *ngFor="let word of filteredWords">
             <app-word-item
                 [wordInfo]="word"
@@ -19,18 +19,14 @@ import { Word, WORDS } from './word';
 
 export class ListWordsComponent {
     words = WORDS;
-    filterMode = 'SHOW_ALL';
+    @ViewChild(WordFilterComponent) filter: WordFilterComponent;
 
     get filteredWords() {
         return this.words.filter(word => {
-            if (this.filterMode === 'SHOW_ALL') return true;
-            if (this.filterMode === 'SHOW_FORGOT') return !word.isMemorized;
+            if (this.filter.filterMode === 'SHOW_ALL') return true;
+            if (this.filter.filterMode === 'SHOW_FORGOT') return !word.isMemorized;
             return word.isMemorized;
         });
-    }
-
-    onSetFilterMode(filterMode: string) {
-        this.filterMode = filterMode;
     }
 
     onAddWord(word: Word) {
