@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { Word } from './word';
 import { AppState } from './types';
-
-const URL = 'http://api.openweathermap.org/data/2.5/weather?appid=01cc37655736835b0b75f2b395737694&units=metric&q=SaiGon';
+import { WeatherService } from './weather-service.service';
 
 @Component({
     selector: 'app-list-words',
@@ -21,13 +19,10 @@ export class ListWordsComponent {
     words: Word[];
     filterMode: string;
 
-    constructor(private store: Store<AppState>, private http: Http) {
+    constructor(private store: Store<AppState>, private weatherService: WeatherService) {
         this.store.select('words').subscribe(w => this.words = w);
         this.store.select('filterMode').subscribe(f => this.filterMode = f);
-        this.http.get(URL)
-        .toPromise()
-        .then(res => res.json())
-        .then(resJson => console.log(resJson.main.temp));
+        this.weatherService.getTemp();
     }
 
     get filteredWords() {
