@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Word } from './word';
 import { Store } from '@ngrx/store';
 import { AppState } from './types';
+import { WordSerivce } from './word.service';
 
 @Component({
   selector: 'app-word-form',
@@ -43,7 +44,7 @@ export class WordFormComponent {
     shouldShowForm: boolean;
     txtEn = '';
     txtVn = '';
-    constructor(private store: Store<AppState>) {
+    constructor(private store: Store<AppState>, private wordService: WordSerivce) {
         this.store.select('shouldShowForm').subscribe(s => this.shouldShowForm = s);
     }
 
@@ -52,9 +53,8 @@ export class WordFormComponent {
     }
 
     addWord() {
-        // const word: Word = new Word(this.txtEn, this.txtVn);
-        // this.store.dispatch({ type: 'ADD_WORD', word });
-        // this.txtEn = '';
-        // this.txtVn = '';
+        this.wordService.addWord(this.txtEn, this.txtVn);
+        this.txtEn = '';
+        this.txtVn = '';
     }
 }

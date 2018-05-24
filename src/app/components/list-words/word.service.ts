@@ -10,7 +10,7 @@ export class WordSerivce {
     constructor(private http: Http, private store: Store<any>) {}
 
     getWords() {
-        return this.http.get(URL)
+        this.http.get(URL)
         .toPromise()
         .then(res => res.json())
         .then(resJson => {
@@ -18,7 +18,14 @@ export class WordSerivce {
         });
     }
 
-    addWord() {}
+    addWord(en: string, vn: string) {
+        this.http.post(URL, { en, vn })
+        .toPromise()
+        .then(res => res.json())
+        .then(resJson => {
+            this.store.dispatch({ type: 'ADD_WORD', word: resJson.word });
+        });
+    }
 
     removeWord() {}
 
