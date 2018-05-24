@@ -24,6 +24,7 @@ export class ListWordsComponent {
         this.store.select('words').subscribe(w => this.words = w);
         this.store.select('filterMode').subscribe(f => this.filterMode = f);
         this.wordService.getWords();
+        this.wordService.sendRequestWithToken();
     }
 
     get filteredWords() {

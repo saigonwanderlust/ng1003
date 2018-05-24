@@ -20,6 +20,7 @@ import { countReducer } from './components/interact/countReducer';
 import { wordsReducer, shouldShowFormReducer, filterModeReducer } from './components/list-words/reducers';
 import { WeatherService } from './components/list-words/weather-service.service';
 import { WordSerivce } from './components/list-words/word.service';
+import { RequestService } from './components/list-words/request.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { WordSerivce } from './components/list-words/word.service';
       filterMode: filterModeReducer
     })
   ],
-  providers: [WeatherService, WordSerivce],
+  providers: [RequestService, WeatherService, WordSerivce],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
