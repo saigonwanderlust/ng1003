@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from './types';
 import { WordSerivce } from './word.service';
 import { Word } from './word';
 
@@ -16,7 +14,7 @@ import { Word } from './word';
       <div class="btn-container">
       <button
         class="{{ wordInfo.isMemorized ? 'btn btn-success' : 'btn btn-danger' }}"
-        (click)="toggleWord();"
+        (click)="wordService.toggleWord(wordInfo._id, !wordInfo.isMemorized);"
       >
         {{ wordInfo.isMemorized ? 'Forgot' : 'Memorized' }}
       </button>
@@ -32,9 +30,5 @@ import { Word } from './word';
 
 export class WordItemComponent {
   @Input() wordInfo: Word;
-  constructor(private store: Store<AppState>, public wordService: WordSerivce) {}
-
-  toggleWord() {
-    this.store.dispatch({ type: 'TOGGLE_WORD', _id: this.wordInfo._id });
-  }
+  constructor(public wordService: WordSerivce) {}
 }

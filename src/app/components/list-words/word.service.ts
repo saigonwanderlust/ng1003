@@ -34,5 +34,10 @@ export class WordSerivce {
         .then(resJson =>  this.store.dispatch({ type: 'REMOVE_WORD', _id }));
     }
 
-    toggleWord() {}
+    toggleWord(_id, isMemorized: boolean) {
+        this.http.put(`${URL}/${_id}`, { isMemorized })
+        .toPromise()
+        .then(res => res.json())
+        .then(resJson =>  this.store.dispatch({ type: 'TOGGLE_WORD', _id }));
+    }
 }
