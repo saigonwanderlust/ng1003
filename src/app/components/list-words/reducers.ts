@@ -1,6 +1,7 @@
 import { Word } from './word';
 
 export function wordsReducer(state = [], action): Word[] {
+    if (action.type === 'SET_WORDS') return action.words;
     if (action.type === 'REMOVE_WORD') {
         return state.filter(word => word._id !== action._id);
     }
