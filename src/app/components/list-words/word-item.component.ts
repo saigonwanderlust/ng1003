@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './types';
+import { WordSerivce } from './word.service';
 import { Word } from './word';
 
 @Component({
@@ -21,7 +22,7 @@ import { Word } from './word';
       </button>
       <button
           class="btn btn-warning"
-          (click)="removeWord();"
+          (click)="wordService.removeWord(wordInfo._id);"
       >
           Remove
       </button>
@@ -31,11 +32,7 @@ import { Word } from './word';
 
 export class WordItemComponent {
   @Input() wordInfo: Word;
-  constructor(private store: Store<AppState>) {}
-
-  removeWord() {
-    this.store.dispatch({ type: 'REMOVE_WORD', _id: this.wordInfo._id });
-  }
+  constructor(private store: Store<AppState>, public wordService: WordSerivce) {}
 
   toggleWord() {
     this.store.dispatch({ type: 'TOGGLE_WORD', _id: this.wordInfo._id });

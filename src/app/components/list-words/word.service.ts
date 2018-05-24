@@ -27,7 +27,12 @@ export class WordSerivce {
         });
     }
 
-    removeWord() {}
+    removeWord(_id: string) {
+        this.http.delete(`${URL}/${_id}`)
+        .toPromise()
+        .then(res => res.json())
+        .then(resJson =>  this.store.dispatch({ type: 'REMOVE_WORD', _id }));
+    }
 
     toggleWord() {}
 }
