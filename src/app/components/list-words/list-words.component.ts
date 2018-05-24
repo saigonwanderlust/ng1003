@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Word } from './word';
 import { AppState } from './types';
 import { WeatherService } from './weather-service.service';
+import { WordSerivce } from './word.service';
 
 @Component({
     selector: 'app-list-words',
@@ -19,10 +20,10 @@ export class ListWordsComponent {
     words: Word[];
     filterMode: string;
 
-    constructor(private store: Store<AppState>, private weatherService: WeatherService) {
+    constructor(private store: Store<AppState>, private wordService: WordSerivce) {
         this.store.select('words').subscribe(w => this.words = w);
         this.store.select('filterMode').subscribe(f => this.filterMode = f);
-        this.weatherService.getTemp();
+        this.wordService.getWords();
     }
 
     get filteredWords() {
