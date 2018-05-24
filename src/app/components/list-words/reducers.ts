@@ -1,6 +1,6 @@
-import { Word, WORDS } from './word';
+import { Word } from './word';
 
-export function wordsReducer(state = WORDS, action): Word[] {
+export function wordsReducer(state = [], action): Word[] {
     if (action.type === 'REMOVE_WORD') {
         return state.filter(word => word._id !== action._id);
     }

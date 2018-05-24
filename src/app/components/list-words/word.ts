@@ -1,17 +1,6 @@
-export class Word {
+export interface Word {
     _id: string;
-    constructor(
-        public en: string,
-        public vn: string,
-        public isMemorized = false
-    ) {
-        this._id = Math.round(Math.random() * 10000) + '';
-    }
+    en: string;
+    vn: string;
+    isMemorized: false;
 }
-
-export const WORDS: Word[] = [
-    new Word('one', 'mot', true),
-    new Word('two', 'hai', false),
-    new Word('three', 'ba', false),
-    new Word('four', 'bon', true),
-];

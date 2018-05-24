@@ -52,9 +52,9 @@ export class WordFormComponent {
     }
 
     addWord() {
-        const word: Word = new Word(this.txtEn, this.txtVn);
-        this.store.dispatch({ type: 'ADD_WORD', word });
-        this.txtEn = '';
-        this.txtVn = '';
+        // const word: Word = new Word(this.txtEn, this.txtVn);
+        // this.store.dispatch({ type: 'ADD_WORD', word });
+        // this.txtEn = '';
+        // this.txtVn = '';
     }
 }
