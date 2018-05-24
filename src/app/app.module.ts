@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { wordsReducer, shouldShowFormReducer, filterModeReducer } from './compon
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     StoreModule.forRoot({
       count: countReducer,
       words: wordsReducer,
